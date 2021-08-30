@@ -1,0 +1,15 @@
+docker-compose -f mongo.yaml up
+
+docker-compose -f mongo.yaml down
+
+docker-compose -f mongo.yaml up -d
+
+docker build -t my-app:1.0 .
+
+docker run my-app:1.0 
+
+# docker exec -it ID /bin/bash 
+
+docker exec -it ID /bin/sh
+
+	env # get information about it

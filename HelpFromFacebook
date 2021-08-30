@@ -1,0 +1,32 @@
+https://www.facebook.com/groups/1102187713218689/posts/3841178369319596/
+
+########
+Right Steps:
+---
+1- docker pull mongo:latest
+2- docker pull mongo-express:latest
+3- docker network create mongo-network
+4- docker run -d --rm \
+--network mongo-network \
+-p 27017:27017 \
+-e MONGO_INITDB_ROOT_USERNAME=admin \
+-e MONGO_INITDB_ROOT_PASSWORD=password \
+--name mongodb \
+mongo:latest
+5- docker run -d --rm \
+--network mongo-network \
+-p 8081:8081 \
+-e ME_CONFIG_MONGODB_SERVER=mongodb \
+-e ME_CONFIG_MONGODB_ADMINUSERNAME=admin \
+-e ME_CONFIG_MONGODB_ADMINPASSWORD=password \
+--name mongo-express \
+mongo-express:latest
+6- open in browser http://localhost:8081/
+########
+To clean up:
+---
+1- docker rm -f mongo-express
+2- docker rm -f mongodb
+3- docker network rm mongo-network
+4- docker rmi mongo:latest
+5- docker rmi mongo-express:latest
